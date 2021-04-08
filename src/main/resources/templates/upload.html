@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    업로드 테스트ddsddss
+    <form id="uploadForm" enctype="multipart/form-data" method="post">
+        <input multiple type="file" name="files" id="file" accept="image/*" >
+        <a href="javascript:uploadImages()">전송</a>
+    </form>
+    <div id="test">ddd</div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+
+
+
+        const uploadImages = function() {
+            // const uploadForm = document.getElementById("uploadForm");
+            // // const data = serialize(uploadForm);
+            // const file = document.getElementById('file').value;
+            //
+            // const data = new URLSearchParams();
+            // for (const pair of new FormData(uploadForm)) {
+            //     data.append(pair[0], pair[1]);
+            // }
+
+            let input = document.querySelector('input[type="file"]');
+
+            let data = new FormData();
+            data.append('testfile', document.getElementById('uploadForm')[0].files[0]);
+            data.append('name', 'hubot');
+            // alert(document.getElementById('uploadForm')[0].files[0])
+            fetch('/upload/images', {
+                method: 'post',
+                headers : {},
+                body : data
+            }).then(res => {
+                console.log(res);
+            })
+
+
+            // $.ajax({
+            //     type: "POST",
+            //     enctype: 'multipart/form-data',
+            //     url: "/upload/images",
+            //     data: data,
+            //     processData: false,
+            //     contentType: false,
+            //     cache: false,
+            //     timeout: 600000,
+            //     success: function (data) {
+            //         $('#btnUpload').prop('disabled', false);
+            //         alert('success')
+            //     },
+            //     error: function (e) {
+            //         $('#btnUpload').prop('disabled', false);
+            //         alert('fail');
+            //     }
+            // });
+
+        };
+
+
+
+
+
+    </script>
+</body>
+</html>
